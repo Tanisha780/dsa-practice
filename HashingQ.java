@@ -1,31 +1,28 @@
 import java.util.*;
-//majority element
-// given an integer array of size n, find all elements that appear more than n/3 times
-
-class HashingQ {
-  static void majorityElement(int[]nums){
-    HashMap<Integer, Integer> map = new HashMap<>();
-    int n = nums.length;
-    for(int i = 0; i<n;i++){
-      // if key exists then updates the frequency value
-      if(map.containsKey(nums[i])){
-        map.put(nums[i],map.get(nums[i])+1);
-      }
-      // new pair else
-      else{
-        map.put(nums[i],1);
-      }
+class HashingQ{
+  // intersection of two arrays having unique values in new set
+  static int intersection(int[]nums1,int[]nums2){
+    HashSet<Integer> set = new HashSet<>();
+    int count=0;
+    for(int i =0;i<nums1.length;i++){
+      set.add(nums1[i]);
 
     }
-    for(int key : map.keySet()){
-      if(map.get(key)>n/3){
-        System.out.println(key);
+    for(int j  = 0;j<nums2.length;j++){
+      if(set.contains(nums2[j]))
+      {
+        count++;
+        set.remove(nums2[j]);
+
       }
     }
+    return count;
+
   }
+
   public static void main(String[] args) {
-    int nums[]= {1,3};
-    majorityElement(nums);
+    int []nums1 ={1,2,3};
+    int[]nums2 = {4,5,6,1,2};
+    System.out.println(intersection(nums1, nums2));
   }
-  
 }
