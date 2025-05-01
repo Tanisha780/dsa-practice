@@ -1,30 +1,35 @@
 
-import java.util.*;
+import java.util.HashMap;
 
+
+// itenary tickets
 class HashingQ {
-  // finding majority element given an array of integers in which we have to find element which appears greater than n/3 times
-
-    static void majorityElement(int[] nums) {
-        HashMap<Integer, Integer> map = new HashMap<>();
-        int n = nums.length;
-        for (int i = 0; i < n; i++) {
-            if (map.containsKey(nums[i])) {
-                map.put(nums[i], map.get(nums[i]) + 1);
-            } else {
-                map.put(nums[i], 1);
-            }
-        }
-        for(int Key:map.keySet())
-{
-  if(map.get(Key)>n/3){
-    System.out.println(Key);
+  static String getStart(HashMap<String,String> tick){
+    HashMap<String,String> revMap = new HashMap<>();
+    for(String key: tick.keySet()){
+      revMap.put(tick.get(key),key);
+    }
+    for(String key: tick.keySet()){
+      if(!revMap.containsKey(key)){
+        return key;
+      }
+    }
+    return null;
+  }
+  public static void main(String[] args) {
+    HashMap<String, String> map = new HashMap<>();
+    map.put("chennai","bengaluru");
+    map.put("mumbai","delhi");
+    map.put("goa","chennai");
+    map.put("delhi","goa");
+    String start = getStart(map);
+    while(map.containsKey(start)){
+      System.out.println(start);
+      start = map.get(start);
+    }
+       
+System.out.println(start);
   }
 }
-    }
 
-    public static void main(String[] args) {
-        int[] nums = {1, 2, 3, 4, 1, 1, 1, 2, 3};
-        majorityElement(nums);
 
-    }
-}
