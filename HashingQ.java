@@ -1,28 +1,30 @@
+
 import java.util.*;
-class HashingQ{
-  // intersection of two arrays having unique values in new set
-  static int intersection(int[]nums1,int[]nums2){
-    HashSet<Integer> set = new HashSet<>();
-    int count=0;
-    for(int i =0;i<nums1.length;i++){
-      set.add(nums1[i]);
+
+class HashingQ {
+  // finding majority element given an array of integers in which we have to find element which appears greater than n/3 times
+
+    static void majorityElement(int[] nums) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int n = nums.length;
+        for (int i = 0; i < n; i++) {
+            if (map.containsKey(nums[i])) {
+                map.put(nums[i], map.get(nums[i]) + 1);
+            } else {
+                map.put(nums[i], 1);
+            }
+        }
+        for(int Key:map.keySet())
+{
+  if(map.get(Key)>n/3){
+    System.out.println(Key);
+  }
+}
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {1, 2, 3, 4, 1, 1, 1, 2, 3};
+        majorityElement(nums);
 
     }
-    for(int j  = 0;j<nums2.length;j++){
-      if(set.contains(nums2[j]))
-      {
-        count++;
-        set.remove(nums2[j]);
-
-      }
-    }
-    return count;
-
-  }
-
-  public static void main(String[] args) {
-    int []nums1 ={1,2,3};
-    int[]nums2 = {4,5,6,1,2};
-    System.out.println(intersection(nums1, nums2));
-  }
 }
